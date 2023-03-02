@@ -4,11 +4,11 @@ from webapp.models import Task, Type, Status
 
 # Register your models here.
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'description')
-    list_filter = ('id', 'title', 'description')
-    search_fields = ('id', 'title', 'description')
-    fields = ('id', 'title', 'description')
-    readonly_fields = ('id', 'title', 'description')
+    list_display = ('id', 'title', 'description', 'status', 'created_at', 'updated_at')
+    list_filter = ('id', 'title', 'description', 'status', 'created_at', 'updated_at')
+    search_fields = ('id', 'title', 'description', 'status', 'created_at', 'updated_at')
+    fields = ('id', 'title', 'description', 'status', 'created_at', 'updated_at')
+    readonly_fields = ('id', 'title', 'description', 'status', 'created_at', 'updated_at')
 
 
 admin.site.register(Task, TaskAdmin)

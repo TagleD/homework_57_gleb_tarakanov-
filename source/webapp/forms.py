@@ -21,4 +21,3 @@ class TaskForm(forms.ModelForm):
         if len(title) < 2:
             raise ValidationError('Заголовок должен быть длинее 2-ух символов')
         return title
-
