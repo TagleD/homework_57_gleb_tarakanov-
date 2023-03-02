@@ -20,7 +20,7 @@ class Task(models.Model):
     status = models.ForeignKey(
         'webapp.Status',
         related_name='comments',
-        on_delete=models.RESTRICT,
+        on_delete=models.PROTECT,
         verbose_name='Статус'
     )
     type = models.ManyToManyField(
