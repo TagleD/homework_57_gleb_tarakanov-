@@ -19,7 +19,7 @@ class Task(models.Model):
     )
     status = models.ForeignKey(
         'webapp.Status',
-        related_name='comments',
+        related_name='statuses',
         on_delete=models.PROTECT,
         verbose_name='Статус'
     )
