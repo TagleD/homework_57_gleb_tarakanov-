@@ -42,8 +42,8 @@ button {
     padding-left: 40px;
 }
 
-.padding-left-tasks-h2 {
-    padding-left: 30px;
+.h1-detail {
+    padding-left: 7px;
 }
 
 .padding-top {
@@ -65,10 +65,6 @@ button {
     margin-bottom: 40px;
 }
 
-/*.index-main {*/
-/*    background: #c0dfc2;*/
-/*    height: 100%;*/
-/*}*/
 
 .image-logo {
     height: 189px;
@@ -96,6 +92,7 @@ button {
 .center-title {
     text-align: center;
     margin-top: 40px;
+    margin-bottom: 34px;
 }
 
 .start {
@@ -103,4 +100,9 @@ button {
     text-align: center;
     background: #4b6154;
     border-color: #4b6154;
+}
+
+.green {
+    background: #64ac8f;
+    border-color: #64ac8f;
 }

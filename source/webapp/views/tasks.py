@@ -1,5 +1,6 @@
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
 from django.views.generic import TemplateView
 
 from webapp.forms import TaskForm
@@ -70,9 +71,12 @@ class DeleteView(TemplateView):
         return context
 
 
-def delete_view(request, pk):
-    task = get_object_or_404(Task, pk=pk)
-    return render(request, 'confirm_delete.html', context={'task': task})
+class ConfirmDelete(View):
+
+    def post(self, request, *args, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs['pk'])
+        task.delete()
+        return redirect('index')
 
 
 def confirm_delete(request, pk):

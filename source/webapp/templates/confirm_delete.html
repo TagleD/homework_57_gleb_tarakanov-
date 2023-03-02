@@ -21,7 +21,10 @@
         </div>
         <div class="row">
             <div class="col-1 button-margin">
-                <a href="{% url 'confirm_delete' task.pk %}" class='btn btn-danger'>Удалить</a>
+                <form action="{% url 'confirm_delete' task.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class='btn btn-danger'>Удалить</button>
+                </form>
             </div>
             <div class="col-1">
                 <a href="{% url 'tasks_view' %}" class='btn btn-success'>Отмена</a>
