@@ -17,10 +17,11 @@ class Task(models.Model):
         blank=True,
         verbose_name='Описание'
     )
-    status = models.ManyToManyField(
-        to='webapp.Status',
-        related_name='statuses',
-        blank=True
+    status = models.ForeignKey(
+        'webapp.Status',
+        related_name='comments',
+        on_delete=models.RESTRICT,
+        verbose_name='Статус'
     )
     type = models.ManyToManyField(
         to='webapp.Type',

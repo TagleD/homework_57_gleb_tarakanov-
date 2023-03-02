@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-    width: 900px;
+    width: 1000px;
 }
 
 .nav-menu-back {
@@ -21,7 +21,7 @@ body {
     max-width: 86%;
 }
 
-h2 {
+h1 {
     margin: 20px;
     margin-bottom: 40px;
 }
@@ -65,10 +65,10 @@ button {
     margin-bottom: 40px;
 }
 
-.index-main {
-    background: #c0dfc2;
-    height: 100%;
-}
+/*.index-main {*/
+/*    background: #c0dfc2;*/
+/*    height: 100%;*/
+/*}*/
 
 .image-logo {
     height: 189px;

@@ -1,5 +1,7 @@
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import TemplateView
+
 from webapp.forms import TaskForm
 from webapp.models import Task
 
@@ -9,6 +11,15 @@ def tasks_view(request):
         'tasks': tasks
     }
     return render(request, 'tasks.html', context=context)
+
+class TasksView(TemplateView):
+    template_name = 'tasks.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tasks'] = Task.objects.all()
+        return context
+
 
 def detail_view(request, pk):
     task = get_object_or_404(Task, pk=pk)
