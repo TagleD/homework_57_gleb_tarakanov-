@@ -61,6 +61,15 @@ class UpdateView(TemplateView):
         return render(request, 'update_task.html', context={'form': form, 'task': task})
 
 
+class DeleteView(TemplateView):
+    template_name = 'confirm_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['task'] = get_object_or_404(Task, pk=kwargs['pk'])
+        return context
+
+
 def delete_view(request, pk):
     task = get_object_or_404(Task, pk=pk)
     return render(request, 'confirm_delete.html', context={'task': task})
