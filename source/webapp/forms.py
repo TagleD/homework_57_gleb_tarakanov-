@@ -8,10 +8,12 @@ from webapp.models import Task
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('title', 'description')
+        fields = ('title', 'description', 'status', 'type')
         labels = {
             'title': 'Заголовок задачи',
-            'description': 'Описание задачи'
+            'description': 'Описание задачи',
+            'status': 'Статус',
+            'type': 'Тип'
         }
 
     def clean_title(self):

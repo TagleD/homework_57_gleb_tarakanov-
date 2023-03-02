@@ -20,11 +20,19 @@ class TasksView(TemplateView):
         context['tasks'] = Task.objects.all()
         return context
 
+class DetailView(TemplateView):
+    template_name = 'task_detail.html'
 
-def detail_view(request, pk):
-    task = get_object_or_404(Task, pk=pk)
-    context = {'task': task}
-    return render(request, 'task_detail.html', context=context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['task'] = get_object_or_404(Task, pk=kwargs['pk'])
+        return context
+
+
+# def detail_view(request, pk):
+#     task = get_object_or_404(Task, pk=pk)
+#     context = {'task': task}
+#     return render(request, 'task_detail.html', context=context)
 
 
 def add_view(request: WSGIRequest):
@@ -45,22 +53,40 @@ def add_view(request: WSGIRequest):
 
     # Success
     else:
-        task = Task.objects.create(**form.cleaned_data)
+        task = form.save()
         return redirect('detail_view', pk=task.pk)
 
 
-def update_view(request: WSGIRequest, pk):
-    task = get_object_or_404(Task, pk=pk)
+class UpdateView(TemplateView):
+    template_name = 'update_task.html'
 
-    if request.method == 'POST':
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['task'] = get_object_or_404(Task, pk=kwargs['pk'])
+        context['form'] = TaskForm(instance=context['task'])
+        return context
+
+    def post(self, request, *args, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs['pk'])
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
             return redirect('detail_view', pk=task.pk)
         return render(request, 'update_task.html', context={'form': form, 'task': task})
 
-    form = TaskForm(instance=task)
-    return render(request, 'update_task.html', context={'form': form, 'task': task})
+# def update_view(request: WSGIRequest, pk):
+#     task = get_object_or_404(Task, pk=pk)
+#
+#
+#     if request.method == 'POST':
+#         form = TaskForm(request.POST, instance=task)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('detail_view', pk=task.pk)
+#         return render(request, 'update_task.html', context={'form': form, 'task': task})
+#
+#     form = TaskForm(instance=task)
+#     return render(request, 'update_task.html', context={'form': form, 'task': task})
 
 
 def delete_view(request, pk):
